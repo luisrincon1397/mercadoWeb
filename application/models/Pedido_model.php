@@ -9,7 +9,7 @@ class Pedido_model extends CI_Model
 
     public function consulta_pedidos()
     {
-        $this->db->select('pedido.id_pedido, pedido.fecha, pedido.id_usuario, CONCAT(usuario.nombre, " ", usuario.apellido1) AS cliente, pedido.estatus_envio, pedido.total, pedido.estatus_pago, pedido.direccion');
+        $this->db->select('pedido.id_pedido, pedido.fecha, pedido.id_usuario, usuario.nombre_usuario, pedido.estatus_envio, pedido.total, pedido.estatus_pago, pedido.direccion');
         $this->db->from('pedido');
         $this->db->join('usuario', 'usuario.id_usuario = pedido.id_usuario', 'inner');
         $rs = $this->db->get();
@@ -61,7 +61,7 @@ class Pedido_model extends CI_Model
         //$this->db->select('pedido.id_pedido, pedido.fecha, pedido.id_usuario, CONCAT(usuario.nombre, " ", usuario.apellido1) AS cliente, pedido.estado,');
         $this->db->from('pedido');
         $this->db->join('pedido_detalle', 'pedido.id_pedido = pedido_detalle.id_pedido', 'inner');
-        $this->db->join('producto', 'pedido_detalle.id_producto = producto.id_producto', 'inner');
+        $this->db->join('inventario', 'pedido_detalle.id_articulo = inventario.id_articulo', 'inner');
         $this->db->where("pedido.id_pedido", $data["id_pedido"]);
         $rs = $this->db->get();
 
@@ -145,7 +145,7 @@ class Pedido_model extends CI_Model
     {
         $this->db->from('pedido');
         $this->db->join('pedido_detalle', 'pedido.id_pedido = pedido_detalle.id_pedido', 'inner');
-        $this->db->join('producto', 'pedido_detalle.id_producto = producto.id_producto', 'inner');
+        $this->db->join('inventario', 'pedido_detalle.id_articulo = inventario.id_articulo', 'inner');
         $this->db->where("pedido.id_pedido", $id);
         $rs = $this->db->get();
 
