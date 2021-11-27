@@ -7,11 +7,10 @@ class Pedido_model extends CI_Model
         parent::__construct();
     }
 
-    public function consulta_pedidos()
+    public function consultaPedidos()
     {
-        $this->db->select('pedido.id_pedido, pedido.fecha, pedido.id_usuario, usuario.nombre_usuario, pedido.estatus_envio, pedido.total, pedido.estatus_pago, pedido.direccion');
+        $this->db->select('*');
         $this->db->from('pedido');
-        $this->db->join('usuario', 'usuario.id_usuario = pedido.id_usuario', 'inner');
         $rs = $this->db->get();
 
         $obj["resultado"] = $rs->num_rows() > 0;
@@ -56,13 +55,12 @@ class Pedido_model extends CI_Model
         return $obj;
     }
 
-    public function consultaPedido($data)
+    public function detallesPedido($data)
     {
-        //$this->db->select('pedido.id_pedido, pedido.fecha, pedido.id_usuario, CONCAT(usuario.nombre, " ", usuario.apellido1) AS cliente, pedido.estado,');
-        $this->db->from('pedido');
-        $this->db->join('pedido_detalle', 'pedido.id_pedido = pedido_detalle.id_pedido', 'inner');
+        $this->db->select('*');
+        $this->db->from('pedido_detalle');
         $this->db->join('inventario', 'pedido_detalle.id_articulo = inventario.id_articulo', 'inner');
-        $this->db->where("pedido.id_pedido", $data["id_pedido"]);
+        $this->db->where("pedido_detalle.id_pedido", $data["id_pedido"]);
         $rs = $this->db->get();
 
         $obj["resultado"] = $rs->num_rows() > 0;
@@ -77,75 +75,9 @@ class Pedido_model extends CI_Model
         return $obj;
     }
 
-    public function editarEstatusEnvio($data)
-    {
-        $this->db->where("id_pedido", $data["id_pedido"]);
-        $rs = $this->db->get("pedido");
-
-        $obj["resultado"] = $rs->num_rows() > 0;
-
-        if ($obj["resultado"]) {
-            $this->db->set("estatus_envio",  $data["estado"]);
-            $this->db->where("id_pedido",   $data["id_pedido"]);
-            $this->db->update("pedido");
-            $obj["resultado"] = $this->db->affected_rows() == 1;
-            if ($obj["resultado"]) {
-                $obj["mensaje"] = "El pedido se actualizó correctamente con los mismos datos";
-            } else {
-                $obj["mensaje"]   = "Surgió un error al intentar actualizar el pedido en la base de datos";
-            }
-        } else {
-            $obj["mensaje"] = "No se encontró el pedido " . $data["id_pedido"] . " en la base de datos";
-        }
-        return $obj;
-    }
-
-    public function editarEstatusPago($data)
-    {
-        $this->db->where("id_pedido", $data["id_pedido"]);
-        $rs = $this->db->get("pedido");
-
-        $obj["resultado"] = $rs->num_rows() > 0;
-
-        if ($obj["resultado"]) {
-            $this->db->set("estatus_pago",  $data["estado"]);
-            $this->db->where("id_pedido",   $data["id_pedido"]);
-            $this->db->update("pedido");
-            $obj["resultado"] = $this->db->affected_rows() == 1;
-            if ($obj["resultado"]) {
-                $obj["mensaje"] = "El pedido se actualizó correctamente con los mismos datos";
-            } else {
-                $obj["mensaje"]   = "Surgió un error al intentar actualizar el pedido en la base de datos";
-            }
-        } else {
-            $obj["mensaje"] = "No se encontró el pedido " . $data["id_pedido"] . " en la base de datos";
-        }
-        return $obj;
-    }
-
-    public function consulta_mispedidos($id)
+    public function consultarPedido($id)
     {
         $this->db->from('pedido');
-        $this->db->where("pedido.id_usuario", $id);
-        $rs = $this->db->get();
-
-        $obj["resultado"] = $rs->num_rows() > 0;
-
-        if ($obj["resultado"]) {
-            $obj["detalle"] = $rs->result();
-            $obj["mensaje"] = "Consulta exitosa";
-        } else {
-            $obj["mensaje"] = "No se encuentran pedido en la base de datos";
-        }
-
-        return $obj;
-    }
-
-    public function consultar_pedido($id)
-    {
-        $this->db->from('pedido');
-        $this->db->join('pedido_detalle', 'pedido.id_pedido = pedido_detalle.id_pedido', 'inner');
-        $this->db->join('inventario', 'pedido_detalle.id_articulo = inventario.id_articulo', 'inner');
         $this->db->where("pedido.id_pedido", $id);
         $rs = $this->db->get();
 
