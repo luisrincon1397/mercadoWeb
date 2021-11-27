@@ -50,4 +50,28 @@ class Pedido extends CI_Controller {
 		echo json_encode( $obj );
 	}
 
+	public function crearPedido(){
+		$data = array(
+			"fecha" => $this->input->post( "fecha" ),
+			"total" => $this->input->post( "total" ),
+			"direccion" => $this->input->post( "direccion" ),
+			"nombre" => $this->input->post( "nombre" ),
+			"telefono" => $this->input->post( "telefono" ),
+		);
+		$obj = $this->Pedido_model->crearPedido($data);
+		$this->output->set_content_type( "application/json" );
+		echo json_encode( $obj );
+	}
+
+	public function insertarDetalle(){
+		$data = array(
+			"id_pedido" => $this->input->post( "id_pedido" ),
+			"id_articulo" => $this->input->post( "id_articulo" ),
+			"cantidad" => $this->input->post( "cantidad" )
+		);
+		$obj = $this->Pedido_model->insertarDetalle($data);
+		$this->output->set_content_type( "application/json" );
+		echo json_encode( $obj );
+	}
+
 }

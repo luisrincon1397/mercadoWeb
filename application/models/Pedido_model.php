@@ -92,4 +92,29 @@ class Pedido_model extends CI_Model
 
         return $obj;
     }
+
+    public function crearPedido($data)
+    {
+        $this->db->insert('pedido', $data);
+        $obj["resultado"] = $this->db->affected_rows() > 0;
+        if ($obj["resultado"]) {
+            $obj["id_pedido"] = $this->db->insert_id();
+            $obj["mensaje"] = "Pedido realizado correctamente.";
+        } else {
+            $obj["mensaje"] = "Error al realizar pedido";
+        }
+        return $obj;
+    }
+
+    public function insertarDetalle($data)
+    {
+        $this->db->insert('pedido_detalle', $data);
+        $obj["resultado"] = $this->db->affected_rows() > 0;
+        if ($obj["resultado"]) {
+            $obj["mensaje"] = "Detalle insertado correctamente.";
+        } else {
+            $obj["mensaje"] = "Error al insertar detalle";
+        }
+        return $obj;
+    }
 }
