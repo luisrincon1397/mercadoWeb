@@ -13,8 +13,8 @@ class Pedido extends CI_Controller {
 
 	public function index(){}
 
-    public function consulta_pedidos(){
-		$obj = $this->Pedido_model->consulta_pedidos();
+    public function consultaPedidos(){
+		$obj = $this->Pedido_model->consultaPedidos();
 
 		$this->output->set_content_type( "application/json" );
 		echo json_encode( $obj );
@@ -32,53 +32,20 @@ class Pedido extends CI_Controller {
 		echo json_encode( $obj );
 	}
 
-	public function consultaPedido() {
+	public function detallesPedido() {
 		$id_pedido = $this->input->post( "id_pedido" );
 		$data = array(
 				"id_pedido" => $id_pedido,
 			);
 
-		$obj = $this->Pedido_model->consultaPedido( $data );
+		$obj = $this->Pedido_model->detallesPedido( $data );
 		$this->output->set_content_type( "application/json" ); 
-		echo json_encode( $obj );
-	}
-
-	public function editarPedidoEnvio() {
-		$id_pedido = $this->input->post( "id_pedido" );
-		$estado = $this->input->post( "estado" );
-		$data = array(
-				"id_pedido" => $id_pedido,
-				"estado" => $estado,
-			);
-
-		$obj = $this->Pedido_model->editarEstatusEnvio( $data );
-		$this->output->set_content_type( "application/json" ); 
-		echo json_encode( $obj );
-	}
-
-    public function editarPedidoPago() {
-		$id_pedido = $this->input->post( "id_pedido" );
-		$estado = $this->input->post( "estado" );
-		$data = array(
-				"id_pedido" => $id_pedido,
-				"estado" => $estado,
-			);
-
-		$obj = $this->Pedido_model->editarEstatusPago( $data );
-		$this->output->set_content_type( "application/json" ); 
-		echo json_encode( $obj );
-	}
-
-	public function mis_pedidos(){
-		$id_usuario = $this->input->post( "id_usuario" );
-		$obj = $this->Pedido_model->consulta_mispedidos($id_usuario);
-		$this->output->set_content_type( "application/json" );
 		echo json_encode( $obj );
 	}
 
 	public function consultarPedido(){
 		$id_pedido = $this->input->post( "id_pedido" );
-		$obj = $this->Pedido_model->consultar_pedido($id_pedido);
+		$obj = $this->Pedido_model->consultarPedido($id_pedido);
 		$this->output->set_content_type( "application/json" );
 		echo json_encode( $obj );
 	}
