@@ -33,11 +33,26 @@ function pedidos(){
                     elemento.direccion,
                     elemento.total,
                     elemento.fecha,
-                    '<button class="btn btn-info"> Ver </button> '
+                    '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ver" onclick="ver('+elemento.id_pedido+')"> Ver </button> '
                 ]).draw().node();
             });
             
         }
     });
 
-};
+}
+function ver(id_pedido) {
+    $.ajax({
+        "url": base_url + "pedido/verPedido",
+        "datatype": 'json',
+        "type": 'post',
+        "data": {'id_pedido': id_pedido},
+        "success": function (obj) {
+            $('#id_pedido').val(obj.id_pedido);
+            $('#nombre').val(obj.nombre);
+            $('#telefono').val(obj.telefono);
+            $('#direccion').val(obj.direccion);
+            $('#fecha').val(obj.fecha);
+		}
+	});
+}

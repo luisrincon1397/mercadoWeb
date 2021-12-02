@@ -75,5 +75,11 @@ class Pedido extends CI_Controller {
 		$this->output->set_content_type( "application/json" );
 		echo json_encode( $obj );
 	}
+	public function verPedido(){
+		$id_pedido = $this->input->post('id_pedido');
+		$obj = $this->Pedido_model->verPedido($id_pedido);
+        $this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($obj));
+	}
 
 }

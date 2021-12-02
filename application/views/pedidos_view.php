@@ -60,7 +60,48 @@
             </table>
         </div>
     </main>
+	<div class="modal fade" tabindex="-1" role="dialog" id="ver">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Lista de pedidos</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col-3 form-group">
+                                <label>ID de pedido</label>
+                                <input class="form-control" type="text" id="id_pedido" disabled>
+                            </div>
 
+                            <div class="col-9 form-group">
+                                <label>Nombre</label>
+                                <input class="form-control" type="text" id="nombre" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+							<div class="col-4 form-group">
+                                <label>Telefono</label>
+                                <input class="form-control" type="text" id="telefono" disabled>
+                            </div>
+                            <div class="col-4 form-group">
+                                <label>Dirección</label>
+                                <input class="form-control" type="text" id="direccion" disabled>
+                            </div>
+                            <div class="col-4 form-group">
+                                <label>Fecha</label>
+                                <input class="form-control" type="text" id="fecha" disabled>
+                            </div>
+						</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger form-control" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <script>
         var base_url = "<?= base_url() ?>"

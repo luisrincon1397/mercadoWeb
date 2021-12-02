@@ -117,4 +117,9 @@ class Pedido_model extends CI_Model
         }
         return $obj;
     }
+	
+	public function verPedido($id_pedido){
+		$sql = $this->db->query("SELECT * FROM pedido WHERE id_pedido = ?", $id_pedido);
+		return $sql->row();
+	}
 }
