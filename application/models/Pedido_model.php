@@ -119,7 +119,7 @@ class Pedido_model extends CI_Model
     }
 	
 	public function verPedido($id_pedido){
-		$sql = $this->db->query("SELECT * FROM pedido WHERE id_pedido = ?", $id_pedido);
+		$sql = $this->db->query("SELECT id_pedido, nombre, marca, peso, lote, codigo_barras, caducidad, precio FROM pedido_detalle INNER JOIN inventario ON (pedido_detalle.id_articulo=inventario.id_articulo) WHERE id_pedido = ?", $id_pedido);
 		return $sql->row();
 	}
 }

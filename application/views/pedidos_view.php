@@ -64,35 +64,49 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Lista de pedidos</h5>
+                        <h5 class="modal-title">Lista de productos</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-row">
+					<div class="form-row">
                             <div class="col-3 form-group">
-                                <label>ID de pedido</label>
+                                <label>ID de productos</label>
                                 <input class="form-control" type="text" id="id_pedido" disabled>
                             </div>
-
-                            <div class="col-9 form-group">
+                        <div class="form-row">
+                            <div class="col-3 form-group">
                                 <label>Nombre</label>
                                 <input class="form-control" type="text" id="nombre" disabled>
                             </div>
-                        </div>
-                        <div class="form-row">
-							<div class="col-4 form-group">
-                                <label>Telefono</label>
-                                <input class="form-control" type="text" id="telefono" disabled>
+							<div class="col-3 form-group">
+                                <label>Marca</label>
+                                <input class="form-control" type="text" id="marca" disabled>
                             </div>
-                            <div class="col-4 form-group">
-                                <label>Dirección</label>
-                                <input class="form-control" type="text" id="direccion" disabled>
+							<div class="col-3 form-group">
+                                <label>Peso</label>
+                                <input class="form-control" type="text" id="peso" disabled>
                             </div>
-                            <div class="col-4 form-group">
-                                <label>Fecha</label>
-                                <input class="form-control" type="text" id="fecha" disabled>
+						</div>
+						<div class="modal-body">
+							<div class="form-row">
+								<div class="col-3 form-group">
+									<label>Lote</label>
+									<input class="form-control" type="text" id="lote" disabled>
+								</div>
+								<div class="col-3 form-group">
+									<label>Código de barras</label>
+									<input class="form-control" type="text" id="codigo_barras" disabled>
+								</div>
+								<div class="col-3 form-group">
+									<label>Caducidad</label>
+									<input class="form-control" type="text" id="caducidad" disabled>
+								</div>
+								<div class="col-3 form-group">
+									<label>Precio</label>
+									<input class="form-control" type="text" id="precio" disabled>
+								</div>
                             </div>
 						</div>
                         <div class="modal-footer">

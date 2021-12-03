@@ -48,11 +48,14 @@ function ver(id_pedido) {
         "type": 'post',
         "data": {'id_pedido': id_pedido},
         "success": function (obj) {
-            $('#id_pedido').val(obj.id_pedido);
+			$('#id_pedido').val(obj.id_pedido);
             $('#nombre').val(obj.nombre);
-            $('#telefono').val(obj.telefono);
-            $('#direccion').val(obj.direccion);
-            $('#fecha').val(obj.fecha);
+			$('#marca').val(obj.marca);
+            $('#peso').val(obj.peso);
+            $('#lote').val(obj.lote);
+            $('#codigo_barras').val(obj.codigo_barras);
+			$('#caducidad').val(obj.caducidad);
+			$('#precio').val(obj.precio);
 		}
 	});
 }
