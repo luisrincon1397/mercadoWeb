@@ -11,7 +11,9 @@ class Pedido extends CI_Controller {
 		header( "Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With" );
 	}
 
-	public function index(){}
+	public function index(){
+		$this->load->view("index");
+	}
 
     public function consultaPedidos(){
 		$obj = $this->Pedido_model->consultaPedidos();
@@ -72,6 +74,12 @@ class Pedido extends CI_Controller {
 		$obj = $this->Pedido_model->insertarDetalle($data);
 		$this->output->set_content_type( "application/json" );
 		echo json_encode( $obj );
+	}
+	public function verPedido(){
+		$id_pedido = $this->input->post('id_pedido');
+		$obj = $this->Pedido_model->verPedido($id_pedido);
+        $this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($obj));
 	}
 
 }
